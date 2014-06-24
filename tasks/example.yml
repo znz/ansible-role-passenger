@@ -1,0 +1,20 @@
+---
+- file: state=directory path={{ item }} owner={{ passenger_example_app_owner }} group={{ passenger_example_app_group }} mode=0755
+  with_items:
+  - "{{ passenger_example_app_root }}"
+  - "{{ passenger_example_app_root }}/public"
+  - "{{ passenger_example_app_root }}/tmp"
+
+# empty files
+- copy: content="" dest={{ passenger_example_app_root }}/{{ item }} owner={{ passenger_example_app_owner }} group={{ passenger_example_app_group }} mode=0644
+  with_items:
+  - "public/favicon.ico"
+  - "public/robots.txt"
+  - "tmp/restart.txt"
+
+# example rack app
+- copy: src=example.config.ru dest={{ passenger_example_app_root }}/config.ru owner={{ passenger_example_app_owner }} group={{ passenger_example_app_group }} mode=0644
+
+- template: src=site.example.conf.j2 dest=/etc/apache2/sites-available/example.conf owner=root group=root mode=0644
+- command: a2ensite example.conf creates=/etc/apache2/sites-enabled/example.conf
+  notify: restart apache2

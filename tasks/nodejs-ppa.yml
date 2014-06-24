@@ -1,0 +1,4 @@
+---
+- apt: pkg=python-apt
+- apt_repository: repo='ppa:chris-lea/node.js'
+  when: ansible_distribution_release == "precise"

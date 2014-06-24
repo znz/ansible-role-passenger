@@ -1,0 +1,10 @@
+PassengerMaxPoolSize {{ passenger_max_pool_size }}
+PassengerPoolIdleTime {{ passenger_pool_idle_time }}
+PassengerMaxRequests {{ passenger_max_requests }}
+PassengerStatThrottleRate {{ passenger_stat_throttle_rate }}
+
+{{ passenger_misc_conf }}
+
+{{ passenger_install_apache2_module__snippet.stdout }}
+
+# vim:set ft=apache:

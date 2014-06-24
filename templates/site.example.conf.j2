@@ -1,0 +1,22 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+	ServerName localhost
+	DocumentRoot {{ passenger_example_app_root }}/public
+	<Directory {{ passenger_example_app_root }}/public>
+		Options FollowSymLinks -MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+	RackBaseURI /
+	ErrorLog ${APACHE_LOG_DIR}/example_error.log
+	LogLevel warn
+	CustomLog ${APACHE_LOG_DIR}/example_access.log combined
+	ServerSignature Off
+	<IfModule mod_userdir.c>
+		UserDir disabled
+	</IfModule>
+</VirtualHost>
+#PassengerPreStart http://localhost/
+
+# vim:set ft=apache:

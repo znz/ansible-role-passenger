@@ -1,0 +1,35 @@
+---
+- gem: name=passenger state=latest user_install=no executable={{ rbenv_root }}/shims/gem
+  register: passenger
+
+- name: passenger apache2 module path
+  changed_when: no
+  ignore_errors: yes
+  register: passenger_apache2_module_path
+  shell: |
+   set -e
+   . /etc/profile.d/rbenv.sh
+   passenger-install-apache2-module --snippet | awk '/LoadModule/{print $NF}'
+
+- name: install passenger apache2 module
+  register: passenger_install_apache2_module
+  shell: |
+   creates={{ passenger_apache2_module_path.stdout }}
+   if test -f {{ passenger_apache2_module_path.stdout }}; then
+     exit
+   fi
+   set -e
+   . /etc/profile.d/rbenv.sh
+   passenger-install-apache2-module --auto
+
+- name: passenger-install-apache2-module --snippet
+  register: passenger_install_apache2_module__snippet
+  changed_when: no
+  shell: |
+   set -e
+   . /etc/profile.d/rbenv.sh
+   passenger-install-apache2-module --snippet
+
+- template: src=passenger.conf.j2 dest=/etc/apache2/conf.d/passenger.conf owner=root group=root mode=0644
+  notify:
+  - restart apache2
