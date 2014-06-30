@@ -17,7 +17,7 @@ passenger_packages:
 
 passenger_max_pool_size: 3
 passenger_pool_idle_time: 300
-passenger_max_requests: 1000
+passenger_max_requests: 300
 passenger_stat_throttle_rate: 10
 passenger_misc_conf: |
  #PassengerHighPerformance on
