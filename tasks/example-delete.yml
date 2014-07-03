@@ -1,0 +1,10 @@
+---
+# a2dissite
+- file: state=absent path=/etc/apache2/sites-enabled/example
+  notify: restart apache2
+- file: state=absent path=/etc/apache2/sites-enabled/example.conf
+  notify: restart apache2
+- file: state=absent path=/etc/apache2/sites-available/example
+- file: state=absent path=/etc/apache2/sites-available/example.conf
+
+- file: state=absent path={{ passenger_example_app_root }}
