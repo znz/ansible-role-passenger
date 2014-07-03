@@ -13,6 +13,7 @@ Install passenger with apache2 using rbenv.
   - `passenger_example_app_root`
   - `passenger_example_app_owner`
   - `passenger_example_app_group`
+  - `passenger_delete_example` : do not install example app and delete example app if installed
 - `passenger_packages` : install packages
 - Passenger Config:
   - `passenger_max_pool_size` : role default 3
