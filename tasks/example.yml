@@ -16,5 +16,6 @@
 - copy: src=example.config.ru dest={{ passenger_example_app_root }}/config.ru owner={{ passenger_example_app_owner }} group={{ passenger_example_app_group }} mode=0644
 
 - template: src=site.example.conf.j2 dest=/etc/apache2/sites-available/example.conf owner=root group=root mode=0644
+  notify: restart apache2
 - command: a2ensite example.conf creates=/etc/apache2/sites-enabled/example.conf
   notify: restart apache2
