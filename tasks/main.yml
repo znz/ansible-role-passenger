@@ -4,3 +4,6 @@
 - include: packages.yml tags=passenger-packages
 - include: passenger.yml tags=passenger
 - include: example.yml tags=passenger-example
+  when: not passenger_delete_example
+- include: example-delete.yml tags=passenger-example-delete
+  when: passenger_delete_example
