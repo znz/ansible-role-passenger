@@ -1,2 +1,24 @@
 ---
 # defaults file for ansible-role-passenger
+
+passenger_delete_example: no
+passenger_example_app_root: "/srv/www/example/app"
+# owned by first normal user
+passenger_example_app_owner: 1000
+passenger_example_app_group: 1000
+
+passenger_packages:
+# passenger
+- apache2-prefork-dev
+- libcurl4-gnutls-dev
+# js engine
+- nodejs
+# web server
+- apache2-mpm-prefork
+
+passenger_max_pool_size: 3
+passenger_pool_idle_time: 300
+passenger_max_requests: 300
+passenger_stat_throttle_rate: 10
+passenger_misc_conf: |
+ #PassengerHighPerformance on
