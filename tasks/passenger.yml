@@ -13,11 +13,9 @@
 
 - name: install passenger apache2 module
   register: passenger_install_apache2_module
+  args:
+    creates: "{{ passenger_apache2_module_path.stdout }}"
   shell: |
-   creates={{ passenger_apache2_module_path.stdout }}
-   if test -f {{ passenger_apache2_module_path.stdout }}; then
-     exit
-   fi
    set -e
    . /etc/profile.d/rbenv.sh
    passenger-install-apache2-module --auto
