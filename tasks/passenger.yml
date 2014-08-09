@@ -25,6 +25,11 @@
    . /etc/profile.d/rbenv.sh &&
    passenger-install-apache2-module --snippet
 
-- template: src=passenger.conf.j2 dest=/etc/apache2/conf.d/passenger.conf owner=root group=root mode=0644
+- template: src=passenger.conf.j2 dest=/etc/apache2/mods-available/passenger.conf owner=root group=root mode=0644
   notify:
   - restart apache2
+- template: src=passenger.load.j2 dest=/etc/apache2/mods-available/passenger.load owner=root group=root mode=0644
+  notify:
+  - restart apache2
+- command: a2enmod passenger creates=/etc/apache2/mods-enabled/passenger.conf
+  notify: restart apache2
