@@ -31,8 +31,7 @@ Install passenger with apache2 using rbenv.
     ---
     - hosts: servers
       roles:
-         - { role: znzj.rbenv }
-         - { role: znzj.passenger }
+      - znzj.passenger
 
 ## License
 

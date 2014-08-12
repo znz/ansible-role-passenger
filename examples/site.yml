@@ -3,5 +3,4 @@
   sudo: yes
   roles:
   - { role: znzj.ja_jp, ja_jp_enable_backports: yes }
-  - znzj.rbenv
   - znzj.passenger
