@@ -3,7 +3,7 @@
 	ServerName localhost
 	DocumentRoot {{ passenger_example_app_root }}/public
 	<Directory {{ passenger_example_app_root }}/public>
-		Options FollowSymLinks -MultiViews
+		Options +FollowSymLinks -MultiViews
 		AllowOverride All
 		Order allow,deny
 		allow from all
